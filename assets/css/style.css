@@ -291,16 +291,26 @@ button:hover {
   width: 100%;
 }
 
-.book button:hover {
-  background-color: #c0392b;
-}
-
 .book button.mark-read {
   background-color: #27ae60;
+  color: #fff;
+}
+
+.book button.mark-unread {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.book button:hover {
+  background-color: #34495e;
 }
 
 .book button.mark-read:hover {
   background-color: #229954;
+}
+
+.book button.mark-unread:hover {
+  background-color: #c0392b;
 }
 
 .stats {

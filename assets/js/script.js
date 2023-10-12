@@ -55,83 +55,83 @@ const bookshelf = document.getElementById("bookshelf");
 const books = [];
 
 addBookButton.addEventListener("click", function () {
-  const title = titleInput.value;
-  const author = authorInput.value;
-  const year = yearInput.value;
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const year = yearInput.value;
+    const read = document.getElementById("read").checked;
 
-  if (title && author && year) {
-    const book = {
-      title,
-      author,
-      year,
-      read: false,
-    };
+    if (title && author && year) {
+        const book = {
+            title,
+            author,
+            year,
+            read,
+        };
 
-    books.push(book);
-    updateBookshelf();
-    clearForm();
-  }
+        books.push(book);
+        updateBookshelf();
+        clearForm();
+    }
 });
 
 showUnreadButton.addEventListener("click", function () {
-  const unreadBooks = books.filter((book) => !book.read);
-  displayBooks(unreadBooks);
+    const unreadBooks = books.filter(book => !book.read);
+    displayBooks(unreadBooks);
 });
 
 showReadButton.addEventListener("click", function () {
-  const readBooks = books.filter((book) => book.read);
-  displayBooks(readBooks);
+    const readBooks = books.filter(book => book.read);
+    displayBooks(readBooks);
 });
 
 function clearForm() {
-  titleInput.value = "";
-  authorInput.value = "";
-  yearInput.value = "";
+    titleInput.value = "";
+    authorInput.value = "";
+    yearInput.value = "";
+    document.getElementById("read").checked = false;
 }
 
 function updateBookshelf() {
-  displayBooks(books);
+    displayBooks(books);
 }
 
 function displayBooks(booksToDisplay) {
-  bookshelf.innerHTML = "";
+    bookshelf.innerHTML = "";
 
-  booksToDisplay.forEach((book, index) => {
-    const bookDiv = document.createElement("div");
-    bookDiv.classList.add("book");
+    booksToDisplay.forEach((book, index) => {
+        const bookDiv = document.createElement("div");
+        bookDiv.classList.add("book");
 
-    const titlePara = document.createElement("p");
-    titlePara.textContent = `Judul: ${book.title}`;
-    bookDiv.appendChild(titlePara);
+        const titlePara = document.createElement("p");
+        titlePara.textContent = `Judul: ${book.title}`;
+        bookDiv.appendChild(titlePara);
 
-    const authorPara = document.createElement("p");
-    authorPara.textContent = `Penulis: ${book.author}`;
-    bookDiv.appendChild(authorPara);
+        const authorPara = document.createElement("p");
+        authorPara.textContent = `Penulis: ${book.author}`;
+        bookDiv.appendChild(authorPara);
 
-    const yearPara = document.createElement("p");
-    yearPara.textContent = `Tahun Penerbit: ${book.year}`;
-    bookDiv.appendChild(yearPara);
+        const yearPara = document.createElement("p");
+        yearPara.textContent = `Tahun Penerbit: ${book.year}`;
+        bookDiv.appendChild(yearPara);
 
-    if (!book.read) {
-      const markAsReadButton = document.createElement("button");
-      markAsReadButton.textContent = "Tandai Sudah Dibaca";
-      markAsReadButton.addEventListener("click", () => {
-        book.read = true;
-        updateBookshelf();
-      });
-      bookDiv.appendChild(markAsReadButton);
-    } else {
-      const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Hapus";
-      deleteButton.addEventListener("click", () => {
-        books.splice(index, 1);
-        updateBookshelf();
-      });
-      bookDiv.appendChild(deleteButton);
-    }
+        const markButton = document.createElement("button");
+        markButton.textContent = book.read ? "Tandai Belum Dibaca" : "Tandai Sudah Dibaca";
+        markButton.addEventListener("click", () => {
+            book.read = !book.read;
+            updateBookshelf();
+        });
+        bookDiv.appendChild(markButton);
 
-    bookshelf.appendChild(bookDiv);
-  });
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Hapus";
+        deleteButton.addEventListener("click", () => {
+            books.splice(index, 1);
+            updateBookshelf();
+        });
+        bookDiv.appendChild(deleteButton);
+
+        bookshelf.appendChild(bookDiv);
+    });
 }
 
 updateBookshelf();

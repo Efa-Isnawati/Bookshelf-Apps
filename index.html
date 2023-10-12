@@ -58,21 +58,23 @@
           dibaca dan belum!
         </p>
         <div class="book-form">
-            <label for="title">Judul: </label>
-            <input type="text" id="title" required>
-            <label for="author">Penulis: </label>
-            <input type="text" id="author" required>
-            <label for="year">Tahun Penerbit: </label>
-            <input type="number" id="year" required>
-            <button id="addBook">Tambahkan Buku</button>
+          <label for="title">Judul: </label>
+          <input type="text" id="title" required>
+          <label for="author">Penulis: </label>
+          <input type="text" id="author" required>
+          <label for="year">Tahun Penerbit: </label>
+          <input type="number" id="year" required>
+          <label for="read">Sudah Dibaca: </label>
+          <input type="checkbox" id="read">
+          <button id="addBook">Tambahkan Buku</button>
+        </div>
+        <div>
+            <button id="showUnread">Belum Dibaca</button>
+            <button id="showRead">Sudah Dibaca</button>
         </div>
         <div id="bookshelf" class="bookshelf">
-        <!-- Book elements will be added here dynamically -->
+            <!-- Book elements will be added here dynamically -->
         </div>
-    <div>
-        <button id="showUnread">Belum Dibaca</button>
-        <button id="showRead">Sudah Dibaca</button>
-    </div>
       <aside id="contact">
         <div class="contact-me">
           <div class="card">
