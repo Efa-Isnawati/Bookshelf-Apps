@@ -52,86 +52,108 @@ const addBookButton = document.getElementById("addBook");
 const showUnreadButton = document.getElementById("showUnread");
 const showReadButton = document.getElementById("showRead");
 const bookshelf = document.getElementById("bookshelf");
-const books = [];
+let books = [];
+
+// Fungsi untuk menyimpan buku ke localStorage
+function saveBooksToStorage() {
+  localStorage.setItem("books", JSON.stringify(books));
+}
+
+// Fungsi untuk memuat buku dari localStorage
+function loadBooksFromStorage() {
+  const storedBooks = localStorage.getItem("books");
+  if (storedBooks) {
+    books = JSON.parse(storedBooks);
+    updateBookshelf();
+  }
+}
+
+// Memuat buku dari penyimpanan lokal saat halaman dimuat
+loadBooksFromStorage();
 
 addBookButton.addEventListener("click", function () {
-    const title = titleInput.value;
-    const author = authorInput.value;
-    const year = yearInput.value;
-    const read = document.getElementById("read").checked;
+  const title = titleInput.value;
+  const author = authorInput.value;
+  const year = yearInput.value;
+  const read = document.getElementById("read").checked;
 
-    if (title && author && year) {
-        const book = {
-            title,
-            author,
-            year,
-            read,
-        };
+  if (title && author && year) {
+    const book = {
+      title,
+      author,
+      year,
+      read,
+    };
 
-        books.push(book);
-        updateBookshelf();
-        clearForm();
-    }
+    books.push(book);
+    saveBooksToStorage(); // Menyimpan buku ke localStorage
+    updateBookshelf();
+    clearForm();
+  }
 });
 
 showUnreadButton.addEventListener("click", function () {
-    const unreadBooks = books.filter(book => !book.read);
-    displayBooks(unreadBooks);
+  const unreadBooks = books.filter((book) => !book.read);
+  displayBooks(unreadBooks);
 });
 
 showReadButton.addEventListener("click", function () {
-    const readBooks = books.filter(book => book.read);
-    displayBooks(readBooks);
+  const readBooks = books.filter((book) => book.read);
+  displayBooks(readBooks);
 });
 
 function clearForm() {
-    titleInput.value = "";
-    authorInput.value = "";
-    yearInput.value = "";
-    document.getElementById("read").checked = false;
+  titleInput.value = "";
+  authorInput.value = "";
+  yearInput.value = "";
+  document.getElementById("read").checked = false;
 }
 
 function updateBookshelf() {
-    displayBooks(books);
+  displayBooks(books);
 }
 
 function displayBooks(booksToDisplay) {
-    bookshelf.innerHTML = "";
+  bookshelf.innerHTML = "";
 
-    booksToDisplay.forEach((book, index) => {
-        const bookDiv = document.createElement("div");
-        bookDiv.classList.add("book");
+  booksToDisplay.forEach((book, index) => {
+    const bookDiv = document.createElement("div");
+    bookDiv.classList.add("book");
 
-        const titlePara = document.createElement("p");
-        titlePara.textContent = `Judul: ${book.title}`;
-        bookDiv.appendChild(titlePara);
+    const titlePara = document.createElement("p");
+    titlePara.textContent = `Judul: ${book.title}`;
+    bookDiv.appendChild(titlePara);
 
-        const authorPara = document.createElement("p");
-        authorPara.textContent = `Penulis: ${book.author}`;
-        bookDiv.appendChild(authorPara);
+    const authorPara = document.createElement("p");
+    authorPara.textContent = `Penulis: ${book.author}`;
+    bookDiv.appendChild(authorPara);
 
-        const yearPara = document.createElement("p");
-        yearPara.textContent = `Tahun Penerbit: ${book.year}`;
-        bookDiv.appendChild(yearPara);
+    const yearPara = document.createElement("p");
+    yearPara.textContent = `Tahun Penerbit: ${book.year}`;
+    bookDiv.appendChild(yearPara);
 
-        const markButton = document.createElement("button");
-        markButton.textContent = book.read ? "Tandai Belum Dibaca" : "Tandai Sudah Dibaca";
-        markButton.addEventListener("click", () => {
-            book.read = !book.read;
-            updateBookshelf();
-        });
-        bookDiv.appendChild(markButton);
-
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Hapus";
-        deleteButton.addEventListener("click", () => {
-            books.splice(index, 1);
-            updateBookshelf();
-        });
-        bookDiv.appendChild(deleteButton);
-
-        bookshelf.appendChild(bookDiv);
+    const markButton = document.createElement("button");
+    markButton.textContent = book.read
+      ? "Tandai Belum Dibaca"
+      : "Tandai Sudah Dibaca";
+    markButton.addEventListener("click", () => {
+      book.read = !book.read;
+      saveBooksToStorage(); // Menyimpan perubahan status buku ke localStorage
+      updateBookshelf();
     });
+    bookDiv.appendChild(markButton);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Hapus";
+    deleteButton.addEventListener("click", () => {
+      books.splice(index, 1);
+      saveBooksToStorage(); // Menyimpan perubahan setelah menghapus buku
+      updateBookshelf();
+    });
+    bookDiv.appendChild(deleteButton);
+
+    bookshelf.appendChild(bookDiv);
+  });
 }
 
 updateBookshelf();
