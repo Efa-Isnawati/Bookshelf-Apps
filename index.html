@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inclusive+Sans"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon beranda" href="assets/img/fa-icon.jpg" />
+    <title>Bookshelf by Efa</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="header-logo">
+          <a href="index.html">
+            <img
+              src="assets/img/FA.jpg"
+              alt="Logo"
+              class="logo"
+              width="180px"
+              height="66px"
+            />
+          </a>
+        </div>
+        <ul class="navigation-header">
+          <li class="nav-item active"><a href="index.html">Beranda</a></li>
+          <li class="nav-item"><a href="#book">Buku</a></li>
+          <li class="nav-item"><a href="#contact">Kontak</a></li>
+          <li class="nav-item">
+            <a href="#footer" class="btn btn-started">Get Started</a>
+          </li>
+        </ul>
+        <a href="" class="navigation-header-responsive">&#9776;</a>
+      </nav>
+      <div id="homepage">
+        <div id="new-homepage">
+          <h1 class="mb-3 font-weight-500">Pojok Buku Programming by</h1>
+          <h1><span class="text-primary">FA LEARN CODE</span></h1>
+          <p>Mulai membaca buku dengan pilihan lengkap!</p>
+          <div class="belajar">
+            <a href="#book" class="btn btn-belajar">Ayo Baca</a>
+          </div>
+        </div>
+        <div id="new-hompage-banner">
+          <img src="assets/img/banner.svg" alt="banner" width="468px" />
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="book">
+        <h2>Buku</h2>
+        <div class="garis"></div>
+        <p>
+          Taruh beberapa buku programming lengkap dan praktis dengan benar sudah
+          dibaca dan belum!
+        </p>
+        <div class="book-form">
+            <label for="title">Judul: </label>
+            <input type="text" id="title" required>
+            <label for="author">Penulis: </label>
+            <input type="text" id="author" required>
+            <label for="year">Tahun Penerbit: </label>
+            <input type="number" id="year" required>
+            <button id="addBook">Tambahkan Buku</button>
+        </div>
+        <div id="bookshelf" class="bookshelf">
+        <!-- Book elements will be added here dynamically -->
+        </div>
+    <div>
+        <button id="showUnread">Belum Dibaca</button>
+        <button id="showRead">Sudah Dibaca</button>
+    </div>
+      <aside id="contact">
+        <div class="contact-me">
+          <div class="card">
+            <img src="assets/img/Pasfoto-Efa.png" class="contact-profile" />
+            <h2>Efa Isnawati, S.Kom</h2>
+            <p class="color:grey">Frontend Web Developer</p>
+            <div class="table-responsive">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Email</th>
+                    <td>efaisnawati1911@gmail.com</td>
+                  </tr>
+                  <tr>
+                    <th>Instagram</th>
+                    <td>@efaisnt1911</td>
+                  </tr>
+                  <tr>
+                    <th>Linkedin</th>
+                    <td>@efaisnawati</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <footer id="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/img/FA.jpg" style="width: 180px" />
+          <p>
+            FA Learn Code Adalah suatu platform yang luar biasa untuk
+            memperdalam pengetahuan Anda dalam pemrograman dan teknologi.
+          </p>
+        </div>
+        <div class="footer-menu">
+          <h4 class="text-primary">FALearnCode</h4>
+          <ul>
+            <li class="nav-item"><a href="#book">book</a></li>
+            <li class="nav-item"><a href="#contact">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4 class="text-primary">Kontak</h4>
+          <p>FA Learn Code</p>
+          <p>Jl. Kawasan Industri Pancatama, Cikande, Banten</p>
+          <div class="sosmed-group">
+            <a href="https://www.linkedin.com/in/efaisnawati/"
+              ><div class="sosmed linkedin"></div
+            ></a>
+            <a href="https://www.instagram.com/efaisnt1911/"
+              ><div class="sosmed instagram"></div
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>Copyright &copy; 2023 - FA Learn Code. All Rights Reserved</p>
+      </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
