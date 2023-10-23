@@ -74,15 +74,16 @@ loadBooksFromStorage();
 addBookButton.addEventListener("click", function () {
   const title = titleInput.value;
   const author = authorInput.value;
-  const year = yearInput.value;
+  const year = parseInt(yearInput.value);
   const read = document.getElementById("read").checked;
 
   if (title && author && year) {
     const book = {
+      id: Date.now(),
       title,
       author,
       year,
-      read,
+      isComplete: read,
     };
 
     books.push(book);
@@ -93,12 +94,12 @@ addBookButton.addEventListener("click", function () {
 });
 
 showUnreadButton.addEventListener("click", function () {
-  const unreadBooks = books.filter((book) => !book.read);
+  const unreadBooks = books.filter((book) => !book.isComplete);
   displayBooks(unreadBooks);
 });
 
 showReadButton.addEventListener("click", function () {
-  const readBooks = books.filter((book) => book.read);
+  const readBooks = books.filter((book) => book.isComplete);
   displayBooks(readBooks);
 });
 
@@ -133,11 +134,11 @@ function displayBooks(booksToDisplay) {
     bookDiv.appendChild(yearPara);
 
     const markButton = document.createElement("button");
-    markButton.textContent = book.read
+    markButton.textContent = book.isComplete
       ? "Tandai Belum Dibaca"
       : "Tandai Sudah Dibaca";
     markButton.addEventListener("click", () => {
-      book.read = !book.read;
+      book.isComplete = !book.isComplete;
       saveBooksToStorage(); // Menyimpan perubahan status buku ke localStorage
       updateBookshelf();
     });
